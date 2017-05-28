@@ -4,6 +4,7 @@
  gem 'rails', '5.1.1'
  
  group :production do
+   gem 'pg', '~> 0.20.0'
    gem 'rails_12factor'
  end
  
@@ -20,7 +21,8 @@
  gem 'bootstrap'
  gem 'figaro'
  gem 'listen'
-
+ gem 'devise'
+ 
  group :development, :test do
    gem 'byebug'
    gem 'spring'
