@@ -22,7 +22,7 @@
  gem 'figaro'
  gem 'listen'
  gem 'devise'
- 
+
  group :development, :test do
    gem 'byebug'
    gem 'spring'
@@ -31,4 +31,5 @@
    gem 'faker'
    gem 'factory_girl_rails'
    gem 'pry-rails'
+   gem 'rails-controller-testing'
  end
