@@ -1,4 +1,8 @@
-<h2>Sign in to Blocipedia</h2>
+ <div class="jumbotron">
+   <div class="header-welcome">
+     <h1>Welcome to Blocipedia</h1>
+     <h2> Social Markdown Wikis </h2>
+  </div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -24,3 +28,19 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<div class="row-info-head">
+   <div class="col-md-12">
+     <h2>Blocipedia is an application that allows users to create public and private Markdown-based wikis!</h2>
+   </div>
+</div>
+<div class="row-info">
+   <div class="col-md-6">
+    <h3>Free Users </h3>
+     <p>Use Blocipedia to create, read, update, and delete wikis.</p>
+   </div>
+   <div class="col-md-6">
+    <h3>Premium Users </h3>
+     <p>Premium users can also create private wikis, and add/remove your own collaborators.</p>
+   </div>
+</div>
