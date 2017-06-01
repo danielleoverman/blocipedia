@@ -22,6 +22,7 @@
  gem 'figaro'
  gem 'listen'
  gem 'devise'
+ gem 'pundit'
 
  group :development, :test do
    gem 'byebug'
