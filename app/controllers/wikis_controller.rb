@@ -3,7 +3,8 @@ class WikisController < ApplicationController
    before_action :authenticate_user!
 
   def index
-    @wiki = Wiki.all
+    @wikis.all
+    authorize Wiki 
   end
 
   def show
