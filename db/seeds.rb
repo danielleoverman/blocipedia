@@ -5,25 +5,29 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 require 'faker'
 
- 10.times do
-   user = User.new(
-     email:    Faker::Internet.email,
-     password: Faker::Lorem.characters(10)
-   )
+10.times do
+    user = User.new(
+      email:    Faker::Internet.email,
+      password: Faker::Lorem.characters(10)
+    )
    user.save!
- end
+  
+   end
 
-users = User.all
+ users = User.all
 
 
- # Create Wikis
-15.times do
-  wiki = Wiki.create!(
-    user: users.sample,
-    title: Faker::Lorem.sentence,
-    body: Faker::Lorem.paragraph
-  )
+# Create Wikis
+ 15.times do
+   wiki = Wiki.create!(
+     user: users.sample,
+     title: Faker::Lorem.sentence,
+     body: Faker::Lorem.paragraph
+   )
+
 end
+
 wikis= Wiki.all
