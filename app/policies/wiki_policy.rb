@@ -1,62 +1,64 @@
-class WikiPolicy < ApplicationPolicy
-    attr_reader :user, :wiki 
-
-    def initialize(user, wiki) 
-      @user = user
-      @wiki = wiki
+class WikiPolicy <ApplicationPolicy
+  
+  def edit?
+    if record.user == user
+      true
+    else
+      false
     end
-
-  def index?
-    false
   end
+
 
   def show?
-    record.public? || user.present?
+    if @record.private
+      if @user.admin? || @user.premium? || @record.user == @user || @user.collaborators
+        return true
+      else
+        return false
+      end
+    else
+      return true
+    end
   end
 
-  def create?
-    show?
-  end
-
-  def new?
-    show?
-  end
-
-  def update?
-    user.admin? or user.present?    
-  end
-
-  def edit?
-    show?
-  end
 
   def destroy?
-    user.admin? or user.premium?
+    if @user.admin? || @record.user == @user
+      return true
+    else
+      return false
+    end
   end
 
   class Scope
+       attr_reader :user, :scope
 
+       def initialize(user, scope)
+         @user = user
+         @scope = scope
+       end
 
-    def resolve
-       wikis = []
-       if user.role == 'admin'
-         wikis = scope.all 
-       elsif user.role == 'premium'
-         all_wikis = scope.all
-         all_wikis.each do |wiki|
-           if wiki || wiki.user == user || wiki.collaborated_users.include?(user) 
-             wikis << wiki 
-           end
-         end
-       else 
-         all_wikis = scope.all
-         all_wikis.each do |wiki|
-           if wiki.public? || wiki.collaborated_users.include?(user)
-             wikis << wiki 
-           end
+       def resolve
+         wikis = []
+         if user.role == 'admin'
+           wikis = scope.all
+         elsif user.role == 'premium'
+       all_wikis = scope.all
+       all_wikis.each do |wiki|
+         if !wiki.private? || wiki.owner == user || wiki.collaborating_users.include?(user)
+           wikis << wiki
          end
        end
-    all_wikis
+     else
+       all_wikis = scope.all
+         wikis = []
+         all_wikis.each do |wiki|
+           if !wiki.private? || wiki.collaborating_users.include?(user)
+             wikis << wiki
+           end
+       end
      end
+     wikis
    end
+ end
 end

@@ -24,8 +24,10 @@ class ChargesController < ApplicationController
         currency: 'usd'
     )
     
+    current_user.update_attributes(:role => 'premium')
+
     flash[:notice] = "Thank you for upgrading your account, #{current_user.email}!"
-    redirect_to user_path(current_user) # or wherever
+    redirect_to root_path # or wherever
     
     # Stripe will send back CardErrors, with friendly messages
     # when something goes wrong.
