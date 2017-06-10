@@ -12,20 +12,29 @@ require 'faker'
     user = User.new(
       email:    Faker::Internet.email,
       password: Faker::Lorem.characters(10)
-    )
-   user.save!
-  
+      role: 'standard'
+    )  
    end
 
  users = User.all
 
+ unless User.find_by(email: "danielleoverman1@gmail.com")
+   admin = User.create!(
+     email: "danielleoverman1@gmail.com",
+     password: "password",
+     role: 'admin'
+   )
+   puts "created Admin User."
+   puts "Email: #{admin.email} Password: #{admin.password}"
+ else
 
 # Create Wikis
  15.times do
    wiki = Wiki.create!(
      user: users.sample,
      title: Faker::Lorem.sentence,
-     body: Faker::Lorem.paragraph
+     body: Faker::Lorem.paragraph,
+     private: rand(1..5) != 1          
    )
 
 end

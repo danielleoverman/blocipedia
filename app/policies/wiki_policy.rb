@@ -11,7 +11,7 @@ class WikiPolicy <ApplicationPolicy
 
   def show?
     if @record.private
-      if @user.admin? || @user.premium? || @record.user == @user || @user.collaborators
+      if @user.admin? || @user.premium? || @record.user == @user 
         return true
       else
         return false
@@ -45,7 +45,7 @@ class WikiPolicy <ApplicationPolicy
          elsif user.role == 'premium'
        all_wikis = scope.all
        all_wikis.each do |wiki|
-         if !wiki.private? || wiki.owner == user || wiki.collaborating_users.include?(user)
+         if !wiki.private? || wiki.owner == user 
            wikis << wiki
          end
        end
@@ -53,7 +53,7 @@ class WikiPolicy <ApplicationPolicy
        all_wikis = scope.all
          wikis = []
          all_wikis.each do |wiki|
-           if !wiki.private? || wiki.collaborating_users.include?(user)
+           if !wiki.private? 
              wikis << wiki
            end
        end

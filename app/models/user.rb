@@ -7,6 +7,14 @@ class User < ApplicationRecord
     self.role ||= :standard
   end   
 
+  def premium?
+    self.role == "premium"
+  end
+
+  def standard?
+    self.role == "standard"
+  end
+
   has_many :wikis
   
   # Include default devise modules. Others available are:

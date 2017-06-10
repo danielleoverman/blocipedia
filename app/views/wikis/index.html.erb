@@ -1,6 +1,14 @@
 <h1>All Wikis</h1>
 <%= link_to 'Create a new Wiki', new_wiki_path(Wiki.new), class: 'btn btn-success' %>
 <br>
-<% @wiki.each do |wiki| %>
-  <p><%= link_to wiki.title, wiki_path(wiki.id) %></p>
-<% end %>
+<div class="row">
+   <div class="col-md-8">
+      <% @wiki.each do |wiki| %>
+        <% if wiki.private? %>
+          <p><%= link_to wiki.title, wiki_path(wiki.id) %></p>
+        <% else %>
+          <p><%= link_to wiki.title, wiki_path(wiki.id) %></p>
+        <% end %>
+      <% end %>
+   </div>
+</div>

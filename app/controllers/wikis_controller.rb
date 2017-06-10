@@ -12,7 +12,10 @@ class WikisController < ApplicationController
 
   def new
      @wiki = Wiki.new
-     @user = current_user 
+     if @wiki.private && current_user.standard?
+       flash[:alert] = "You must be a priemium user to view this Wiki."
+       redirect_to root_path
+     end 
   end
 
   def edit 
