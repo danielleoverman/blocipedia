@@ -8,6 +8,9 @@ class User < ApplicationRecord
   end   
 
   has_many :wikis
+  has_many :collaborators
+  has_many :wikis, through: :collaborators
+  
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
