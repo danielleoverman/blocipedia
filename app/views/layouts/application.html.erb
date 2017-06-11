@@ -2,10 +2,10 @@
 <html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <nav>
+  <ul class="nav nav-tabs nav-justified">
     <%= link_to "Home", root_path %>
     <%= link_to "FAQs" %> 
     <%= link_to "Wikis", wikis_path %>  
-    <br>
     <% if user_signed_in? %>
       Signed in as: <strong><%= current_user.email %></strong> |
       <%= link_to 'View Profile', edit_user_registration_path, :class => 'navbar-link' %> - <%= link_to "Sign Out", destroy_user_session_path, data: {confirm: "Are you sure you want to sign out? Press cancel to return." }, method: :delete, :class => 'navbar-link'  %>  
@@ -13,6 +13,7 @@
       <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'  %> -
       <%= link_to "Sign In", new_user_session_path, :class => 'navbar-link'  %>
     <% end %>
+    </ul>
 </nav>
 <div class="Blocipedia-head">
   <title>Blocipedia</title>
