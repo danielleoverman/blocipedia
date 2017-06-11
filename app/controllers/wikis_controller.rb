@@ -21,12 +21,14 @@ class WikisController < ApplicationController
 
   def edit 
     @wiki = Wiki.find(params[:id])
-    @wiki.user = current_user
+    @user = current_user
+    @collaborator = Collaborator.new
   end
   
   def create
     @wiki = Wiki.new(params.require(:wiki).permit(:title, :body))
     @user = current_user
+    @wiki.user = current_user 
 
      if @wiki.save
        flash[:notice] = "Wiki was successfully saved."
