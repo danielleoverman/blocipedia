@@ -2,5 +2,5 @@
 <%= link_to 'Create a new Wiki', new_wiki_path(Wiki.new), class: 'btn btn-success' %>
 <br>
 <% @wiki.each do |wiki| %>
-  <p><%= link_to wiki.title, wiki_path(wiki.id) %></p>
+  <p><%= link_to markdown(wiki.title), wiki %></p>
 <% end %>
